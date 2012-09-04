@@ -7,16 +7,16 @@ step-sequencer.js is a simple step sequencer designed to use native nodes in the
 ## Example usage
 
 ```javascript
-    var context = new webkitAudioContext();
-    
-    // create a new step sequencer with parameters:
-    // (audio context, step length, sequence of frequences)
-    var song1 = new StepSequencer(context, 1, [440, 660, 440, 400]);
+var context = new webkitAudioContext();
 
-    // method to inject other audio nodes at the end of the graph
-    song1.setupAudio();
+// create a new step sequencer with parameters:
+// (audio context, step length, sequence of frequences)
+var song1 = new StepSequencer(context, 1, [440, 660, 440, 400]);
 
-    // start playing sequence
-    song1.play();
+// method to inject other audio nodes at the end of the graph
+song1.setupAudio();
+
+// start playing sequence
+song1.play();
 
 ```
