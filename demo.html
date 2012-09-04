@@ -1,0 +1,77 @@
+  <!DOCTYPE html >
+  <html>
+  <head>
+
+    <title>Step Sequencer Demo - Web Audio API</title>
+
+    <style>
+      label {
+        display: block;
+        padding-top: 25px;
+      }
+    </style>
+
+    <script src="step-sequencer.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+    <script>
+
+      $(document).ready(function() {
+
+        var context = new webkitAudioContext();
+
+        var song1 = new StepSequencer(context, 1, [440, 660, 440, 400]);
+
+        song1.setupAudio();
+
+
+
+        // controls
+
+        $('#play').click(function() {
+          song1.play();
+        });
+
+
+        $('#stop').click(function() {
+          song1.stop();
+        });
+
+
+        $('#volume').change(function() {
+          song1.masterVolume.gain.value = $(this).val();
+        });
+
+
+        $('#tempo').change(function() {
+          
+          // convert bpm to a quarter note value in seconds (assuming 4/4 time)
+          var stepLength = 60 / $(this).val();
+          song1.stepLength = stepLength;
+        });      
+
+
+      });
+
+    </script>
+
+  <head>    
+  <body>
+    <h1>step-sequencer.js</h1>
+
+    <button id = "play">Play</button>
+    <button id = "stop">Stop</button>
+
+    <br>
+
+    <label for="volume">Volume: </label>
+    <input id="volume" type="range" min="0" max="1" step=".1" value=".5" />
+    
+    <br>
+
+    <label for="tempo">Tempo (bpm): </label>
+    <input id="tempo" type="number" min="20" max="300" step="5" value="120" />
+
+  </body>
+  </html>
